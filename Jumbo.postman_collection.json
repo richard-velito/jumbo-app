@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "61955006-df28-4810-8755-a20f0e5465aa",
+		"name": "Jumbo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Closets location by UUID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/closets-location/lxIKYx4XqGsAAAFIemMYwKxK",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"closets-location",
+						"lxIKYx4XqGsAAAFIemMYwKxK"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Closets location by coordinates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/closets-location/5.726087/50.827242",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"closets-location",
+						"5.726087",
+						"50.827242"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
