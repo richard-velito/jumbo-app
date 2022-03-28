@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Store {
 
     String uuid;
-    double longitude;
-    double latitude;
+    Double longitude;
+    Double latitude;
     String city;
     String postalCode;
     String street;
@@ -40,20 +40,20 @@ public class Store {
         return this;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public Store setLongitude(double longitude) {
+    public Store setLongitude(Double longitude) {
         this.longitude = longitude;
         return this;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public Store setLatitude(double latitude) {
+    public Store setLatitude(Double latitude) {
         this.latitude = latitude;
         return this;
     }

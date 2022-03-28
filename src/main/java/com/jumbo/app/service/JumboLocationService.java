@@ -11,5 +11,5 @@ public interface JumboLocationService {
 
     List<Store> getClosetsPosition(double longitude, double latitude);
 
-    void addStore(Store store);
+    Store addStore(Store store);
 }

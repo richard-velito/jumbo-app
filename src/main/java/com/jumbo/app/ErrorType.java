@@ -4,5 +4,10 @@ public enum ErrorType {
 
     InternalError,
     StoreNotFound,
-    TreeIsEmpty
+    TreeIsEmpty,
+
+    LongitudeCannotBeEmpty,
+    LatitudeCannotBeEmpty,
+    UuidCannotBeEmpty,
+    AddressCannotBeEmpty,
 }

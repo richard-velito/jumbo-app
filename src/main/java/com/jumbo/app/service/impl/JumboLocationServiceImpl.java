@@ -5,8 +5,12 @@ import com.jumbo.app.ErrorType;
 import com.jumbo.app.model.Store;
 import com.jumbo.app.service.JumboLocationService;
 import com.jumbo.app.util.KdTree;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.MapBindingResult;
+import org.springframework.validation.Validator;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +27,14 @@ public class JumboLocationServiceImpl implements JumboLocationService {
     private Map<String, Store> storeMap = new HashMap<String, Store>();
     private KdTree tree;
 
-    public JumboLocationServiceImpl() {
+    private Validator validatorService;
+
+    @Autowired
+    public JumboLocationServiceImpl(
+            @Qualifier("storeValidator") Validator validatorService) {
+
+        this.validatorService = validatorService;
+
         loadStores();
         buildTree();
     }
@@ -63,10 +74,21 @@ public class JumboLocationServiceImpl implements JumboLocationService {
 
     /* if we added an store the kd-tree needs to be recreated */
     @Override
-    public void addStore(Store store) {
-        storeMap.put(store.getUuid(), store);
+    public Store addStore(Store store) {
 
+        /**
+         * validate custom attribute definition
+         */
+        MapBindingResult result = new MapBindingResult(new HashMap(), Store.class.getName());
+        validatorService.validate(store, result);
+        if (result.hasErrors()) {
+            throw new RuntimeException(result.getAllErrors().get(0).getCode());
+        }
+
+        storeMap.put(store.getUuid(), store);
         buildTree();
+
+        return store;
     }
 
     private void loadStores() {
